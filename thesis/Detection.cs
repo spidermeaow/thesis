@@ -30,7 +30,7 @@ public class Detection
             imageWidth: ImageSettings.imageWidth,
             imageHeight: ImageSettings.imageHeight, inputColumnName: nameof(Input.Image))
                          .Append(context.Transforms.ExtractPixels(outputColumnName: "data"))
-                         .Append(context.Transforms.ApplyOnnxModel(modelFile: "model.onnx",
+                         .Append(context.Transforms.ApplyOnnxModel(modelFile: "Model/model.onnx",
                          outputColumnName: "model_outputs0",
                          inputColumnName: "data"));
         var model = pipeline.Fit(data);
@@ -78,7 +78,7 @@ public class Detection
     }
     private void LoadLabels()
     {
-        var labels = File.ReadAllLines("labels.txt");
+        var labels = File.ReadAllLines("Model/labels.txt");
         foreach (var label in labels)
         {
             this.labelCache[label] = label;
